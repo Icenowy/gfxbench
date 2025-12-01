@@ -14,7 +14,7 @@ include(EmbedFiles)
 
 find_package(Poco REQUIRED COMPONENTS Foundation)
 find_package(ngrtl REQUIRED core pngio)
-apply_find_vars(POCO NGRTL)
+apply_find_vars(NGRTL)
 
 include_directories(${CMAKE_CURRENT_LIST_DIR}/..)
 

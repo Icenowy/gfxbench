@@ -33,9 +33,9 @@ GLuint GL_APIENTRY glGetDebugMessageLog(GLuint count, GLsizei bufsize, GLenum* s
 void GL_APIENTRY glDebugMessageControl(GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint* ids, GLboolean enabled);
 void GL_APIENTRY glDebugMessageInsert(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* buf);
 void GL_APIENTRY glGetObjectLabel(GLenum identifier, GLuint name, GLsizei bufSize, GLsizei* length, GLchar *label);
-void GL_APIENTRY glGetObjectPtrLabel(const void *ptr, GLsizei bufSize, GLsizei* length, GLchar *label);
+void GL_APIENTRY glGetObjectPtrLabel(void *ptr, GLsizei bufSize, GLsizei* length, GLchar *label);
 void GL_APIENTRY glObjectLabel(GLenum identifier, GLuint name, GLsizei length, const GLchar* label);
-void GL_APIENTRY glObjectPtrLabel(const void *ptr, GLsizei length, const GLchar* label);
+void GL_APIENTRY glObjectPtrLabel(void *ptr, GLsizei length, const GLchar* label);
 void GL_APIENTRY glPopDebugGroup(void);
 void GL_APIENTRY glPushDebugGroup(GLenum source, GLuint id, GLsizei length, const GLchar *message);
 

@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project(benchmark_service)
 
+set(CMAKE_CXX_STANDARD 17)
 
 if( "$ENV{DISABLE_NETMAN}" STREQUAL "1" )
 add_definitions(-DDISABLE_NETMAN)
@@ -44,7 +45,7 @@ find_package(Vulkan)
 if(VULKAN_FOUND)
     apply_find_vars(VULKAN)
 endif()
-apply_find_vars(NGRTL SYSINF POCO)
+apply_find_vars(NGRTL SYSINF)
 
 if(OPT_COMMUNITY_BUILD)
     find_package(OpenSSL REQUIRED)

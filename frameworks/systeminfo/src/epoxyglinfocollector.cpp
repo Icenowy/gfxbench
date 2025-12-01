@@ -877,9 +877,9 @@ namespace detail
     void collectGl(GLESInfo& gl, bool& hasGl)
     {
 #if defined(HAVE_GLFW3)
-        if (!epoxy_is_gl_available()) {
+/*        if (!epoxy_is_gl_available()) {
             return;
-        }
+        }*/
         using namespace detail;
         static const Version GL_VERSIONS[] = {
                 { 1, 0, &nullQuery },
@@ -927,7 +927,7 @@ namespace detail
                 /* Ignore */
             }
         }
-        epoxy_gl_reinitialize_function_pointers();
+        //epoxy_gl_reinitialize_function_pointers();
 #endif
     }
 
@@ -936,9 +936,9 @@ namespace detail
     void collectEgl(EGLInfo& egl, bool& hasEgl)
     {
 #if !TARGET_OS_IPHONE
-        if (!epoxy_is_egl_available()) {
+/*        if (!epoxy_is_egl_available()) {
             return;
-        }
+        }*/
 
         EGLDisplay dpy = eglGetDisplay(EGL_DEFAULT_DISPLAY);
         if (dpy == EGL_NO_DISPLAY) {
@@ -978,10 +978,10 @@ namespace detail
 #if !TARGET_OS_IPHONE
     void collectGles(SystemInfo& sysinf, GLESInfo& gles, bool& hasGles)
     {
-        if (!epoxy_is_egl_available()) {
+/*        if (!epoxy_is_egl_available()) {
             NGLOG_INFO("epoxy_is_egl_available() returned false");
             return;
-        }
+        }*/
 
         int androidVersonCode = 1;
         std::map<std::string, std::string>::iterator it = sysinf.osInfo.attributes.find("build_details/GLBPD_OS_BUILD_VERSION.SDK");
@@ -1030,7 +1030,7 @@ namespace detail
                 NGLOG_INFO("Skipping GLES version(%s.%s) for Android Version Code %s", version.major, version.minor, androidVersonCode);    
             }
         }
-        epoxy_gl_reinitialize_function_pointers();
+        //epoxy_gl_reinitialize_function_pointers();
     }
 #else
     void collectGles(SystemInfo& sysinf, GLESInfo& gles, bool& hasGles)
@@ -1076,7 +1076,7 @@ namespace detail
             [context release];
             context = nil;
         }
-        epoxy_gl_reinitialize_function_pointers();
+        //epoxy_gl_reinitialize_function_pointers();
     }
 #endif
 }

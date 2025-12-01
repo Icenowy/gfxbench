@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(systeminfo)
 
+set(CMAKE_CXX_STANDARD 17)
+
 include(compiler_flags)
 include(apply_find_vars)
 include(EmbedFiles)
@@ -23,7 +25,7 @@ endif()
 
 find_package(Poco REQUIRED COMPONENTS Foundation)
 find_package(ngrtl REQUIRED core pngio)
-apply_find_vars(POCO NGRTL)
+apply_find_vars(NGRTL)
 
 set(ENABLE_FIND_VULKAN 1 CACHE STRING "help desc" FORCE)
 

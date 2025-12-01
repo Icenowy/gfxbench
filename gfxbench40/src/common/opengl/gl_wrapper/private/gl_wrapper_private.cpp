@@ -508,7 +508,7 @@ void GL_APIENTRY glGetObjectLabel(GLenum identifier, GLuint name, GLsizei bufSiz
 
 #pragma push_macro("glGetObjectPtrLabel")
 #undef glGetObjectPtrLabel
-void GL_APIENTRY glGetObjectPtrLabel(const void *ptr, GLsizei bufSize, GLsizei* length, GLchar *label)
+void GL_APIENTRY glGetObjectPtrLabel(void *ptr, GLsizei bufSize, GLsizei* length, GLchar *label)
 {
 #pragma pop_macro("glGetObjectPtrLabel")
     GL_Impl::glGetObjectPtrLabel(ptr, bufSize, length, label);
@@ -524,7 +524,7 @@ void GL_APIENTRY glObjectLabel(GLenum identifier, GLuint name, GLsizei length, c
 
 #pragma push_macro("glObjectPtrLabel")
 #undef glObjectPtrLabel
-void GL_APIENTRY glObjectPtrLabel(const void *ptr, GLsizei length, const GLchar* label)
+void GL_APIENTRY glObjectPtrLabel(void *ptr, GLsizei length, const GLchar* label)
 {
 #pragma pop_macro("glObjectPtrLabel")
      GL_Impl::glObjectPtrLabel(ptr, length, label);

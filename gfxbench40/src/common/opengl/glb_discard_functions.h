@@ -94,10 +94,10 @@ extern PFNGLOBJECTLABELPROC glObjectLabelProc;
 typedef void(GFXB_APIENTRY* PFNGLGETOBJECTLABELPROC) (GLenum identifier, GLuint name, GLsizei bufSize, GLsizei *length, GLchar *label);
 extern PFNGLGETOBJECTLABELPROC glGetObjectLabelProc;
 
-typedef void(GFXB_APIENTRY* PFNGLOBJECTPTRLABELPROC) (const void* ptr, GLsizei length, const GLchar *label);
+typedef void(GFXB_APIENTRY* PFNGLOBJECTPTRLABELPROC) (void* ptr, GLsizei length, const GLchar *label);
 extern PFNGLOBJECTPTRLABELPROC glObjectPtrLabelProc;
      
-typedef void(GFXB_APIENTRY* PFNGLGETOBJECTPTRLABELPROC) (const void* ptr, GLsizei bufSize, GLsizei *length, GLchar *label);
+typedef void(GFXB_APIENTRY* PFNGLGETOBJECTPTRLABELPROC) (void* ptr, GLsizei bufSize, GLsizei *length, GLchar *label);
 extern PFNGLGETOBJECTPTRLABELPROC glGetObjectPtrLabelProc;
 
 

@@ -12,7 +12,7 @@ include(apply_find_vars)
 find_package(Poco REQUIRED COMPONENTS Foundation)
 find_package(ngrtl REQUIRED core)
 
-apply_find_vars(POCO NGRTL)
+apply_find_vars(NGRTL)
 
 include_directories(${TESTFW_ROOT})
 
