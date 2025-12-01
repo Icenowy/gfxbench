@@ -5,7 +5,7 @@ include(CheckRequiredVars)
 check_required_vars(PRODUCT_ID PRODUCT_VERSION PRODUCT_NAME)
 
 # Set compiler flags to support C++11 features
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -278,10 +278,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 list(APPEND LIBRARIES benchmarkservice ${TESTFW_LIBRARIES} ${APPLY_FIND_LIBRARIES})
 
 if(UNIX AND NOT APPLE)
-    list(APPEND LIBRARIES
-        ${QT_LIBRARY_DIR}/libicuuc.so.56
-        ${QT_LIBRARY_DIR}/libicudata.so.56
-        ${QT_LIBRARY_DIR}/libicui18n.so.56)
+    list(APPEND LIBRARIES icuuc icudata icui18n)
 endif()
 
 if(APPLE)
@@ -313,6 +310,7 @@ endif()
 target_link_libraries(${PROJECT_NAME}
     tfw_schemas
     tfw_deviceinfo
+    GL EGL PocoFoundation PocoXML
     ${LIBRARIES}
     Qt5::Core
     Qt5::Gui
@@ -320,6 +318,13 @@ target_link_libraries(${PROJECT_NAME}
     Qt5::OpenGL
     Qt5::Xml
 )
+
+if(UNIX)
+    target_link_libraries(${PROJECT_NAME}
+        Qt5::GuiPrivate
+    )
+endif()
+
 
 # Installation
 
@@ -642,48 +647,7 @@ elseif(UNIX AND NOT APPLE)
     string(REPLACE "(" "" CPACK_RPM_PACKAGE_REQUIRES "${CPACK_RPM_PACKAGE_REQUIRES}")
     string(REPLACE ")" "" CPACK_RPM_PACKAGE_REQUIRES "${CPACK_RPM_PACKAGE_REQUIRES}")
 
-    if(OPT_COMMUNITY_BUILD)
-    if( CMAKE_SIZEOF_P MATCHES 8)
-        set(LIB1 libicui18n.so.56)
-        set(LIB2 libicuuc.so.56)
-        set(LIB3 libicudata.so.56)
-    else()
-        set(LIB1 libicui18n.so.54)
-        set(LIB2 libicuuc.so.54)
-        set(LIB3 libicudata.so.54)
-    endif()
-
-        get_filename_component(start_scripts ${CMAKE_CURRENT_LIST_DIR}/start.sh REALPATH)
-        get_filename_component(core_dir ${QT_LIBRARY_DIR}/libQt5Core${DEBUG_POSTFIX}.so REALPATH)
-        get_filename_component(gui_dir ${QT_LIBRARY_DIR}/libQt5Gui${DEBUG_POSTFIX}.so REALPATH)
-        get_filename_component(opengl_dir ${QT_LIBRARY_DIR}/libQt5OpenGL${DEBUG_POSTFIX}.so REALPATH)
-        get_filename_component(widgets_dir ${QT_LIBRARY_DIR}/libQt5Widgets${DEBUG_POSTFIX}.so REALPATH)
-        get_filename_component(icui_dir ${QT_LIBRARY_DIR}/${LIB1} REALPATH)
-        get_filename_component(icuu_dir ${QT_LIBRARY_DIR}/${LIB2} REALPATH)
-        get_filename_component(icudata_dir ${QT_LIBRARY_DIR}/${LIB3} REALPATH)
-        get_filename_component(xml_dir ${QT_LIBRARY_DIR}/libQt5Xml.so.5 REALPATH)
-        get_filename_component(dbus_dir ${QT_LIBRARY_DIR}/libQt5DBus.so.5 REALPATH)
-        get_filename_component(xcbqpa_dir ${QT_LIBRARY_DIR}/libQt5XcbQpa.so.5 REALPATH)
-        get_filename_component(xcb_dir ${QT_PLUGINS_DIR}/platforms/libqxcb${DEBUG_POSTFIX}.so REALPATH)
-        install(FILES ${start_scripts} DESTINATION . RENAME start.sh)
-        install(FILES ${core_dir} DESTINATION . RENAME libQt5Core${DEBUG_POSTFIX}.so.5 )
-        install(FILES ${gui_dir} DESTINATION . RENAME libQt5Gui${DEBUG_POSTFIX}.so.5 )
-        install(FILES ${opengl_dir} DESTINATION . RENAME libQt5OpenGL${DEBUG_POSTFIX}.so.5 )
-        install(FILES ${widgets_dir} DESTINATION . RENAME libQt5Widgets${DEBUG_POSTFIX}.so.5 )
-        install(FILES ${xml_dir} DESTINATION . RENAME libQt5Xml${DEBUG_POSTFIX}.so.5 )
-        install(FILES ${icui_dir} DESTINATION . RENAME ${LIB1} )
-        install(FILES ${icuu_dir} DESTINATION . RENAME ${LIB2} )
-        install(FILES ${icudata_dir} DESTINATION . RENAME ${LIB3} )
-        install(FILES ${dbus_dir} DESTINATION . RENAME libQt5DBus.so.5 )
-        install(FILES ${dbus_dir} DESTINATION . RENAME platforms/libQt5DBus.so.5 )
-        install(FILES ${xcbqpa_dir} DESTINATION . RENAME platforms/libQt5XcbQpa.so.5 )
-        install(FILES ${xcb_dir} DESTINATION . RENAME platforms/libqxcb${DEBUG_POSTFIX}.so )
-        install(FILES resources/${PRODUCT_ID}/${PRODUCT_ID}.desktop DESTINATION . RENAME ${PRODUCT_ID}.desktop )
-        install(FILES resources/${PRODUCT_ID}/images/icon.png DESTINATION . RENAME ${PRODUCT_ID}.png )
-        set(CPACK_GENERATOR STGZ)
-    else()
-        set(CPACK_GENERATOR TGZ)
-    endif()
+    set(CPACK_GENERATOR TGZ)
 else()
     set(CPACK_GENERATOR TGZ)
 endif()

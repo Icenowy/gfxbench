@@ -12,7 +12,7 @@
 
 #ifndef __APPLE__
 #include "clinfo.h"
-#include "cudainfo.h"
+//#include "cudainfo.h"
 #endif
 
 #include "metalinfo.h"
@@ -37,7 +37,7 @@ public:
 		hasEGL = 0;
 		hasGLES = 0;
 		hasCl = 0;
-		hasCuda = 0;
+//		hasCuda = 0;
 		hasMetal = 0;
 		hasDirectx = 0;
 		hasDirectx12 = 0;
@@ -66,7 +66,7 @@ public:
     GLESInfo glesInfo;
 #ifndef __APPLE__
     ClInfo clInfo;
-    CudaInfo cudaInfo;
+//    CudaInfo cudaInfo;
 #endif
     MetalInfo metalInfo;
 #ifdef WIN32
@@ -80,7 +80,7 @@ public:
     bool hasEGL;
     bool hasGLES;
     bool hasCl;
-    bool hasCuda;
+//    bool hasCuda;
     bool hasMetal;
 	bool hasDirectx;
 	bool hasDirectx12;
@@ -107,9 +107,9 @@ public:
             visitor("cl", clInfo);
         }
 
-        if (hasCuda) {
+/*        if (hasCuda) {
             visitor("cuda", cudaInfo);
-        }
+        }*/
 #endif // __APPLE__
         if (hasEGL) {
             visitor("egl", eglInfo);

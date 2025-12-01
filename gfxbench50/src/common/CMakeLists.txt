@@ -78,7 +78,6 @@ set(COMMON_SRC
 source_group( "" FILES ${COMMON_SRC} )
 
 find_package(Poco REQUIRED Foundation)
-apply_find_vars(POCO)
 
 add_library(gfxb_common STATIC ${COMMON_SRC})
 

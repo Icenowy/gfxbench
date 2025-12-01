@@ -149,8 +149,8 @@ GL_APICALL void GL_APIENTRY glPushDebugGroupKHR (GLenum source, GLuint id, GLsiz
 GL_APICALL void GL_APIENTRY glPopDebugGroupKHR (void);
 GL_APICALL void GL_APIENTRY glObjectLabelKHR (GLenum identifier, GLuint name, GLsizei length, const GLchar *label);
 GL_APICALL void GL_APIENTRY glGetObjectLabelKHR (GLenum identifier, GLuint name, GLsizei bufSize, GLsizei *length, GLchar *label);
-GL_APICALL void GL_APIENTRY glObjectPtrLabelKHR (const void *ptr, GLsizei length, const GLchar *label);
-GL_APICALL void GL_APIENTRY glGetObjectPtrLabelKHR (const void *ptr, GLsizei bufSize, GLsizei *length, GLchar *label);
+GL_APICALL void GL_APIENTRY glObjectPtrLabelKHR (void *ptr, GLsizei length, const GLchar *label);
+GL_APICALL void GL_APIENTRY glGetObjectPtrLabelKHR (void *ptr, GLsizei bufSize, GLsizei *length, GLchar *label);
 GL_APICALL void GL_APIENTRY glGetPointervKHR (GLenum pname, void **params);
 #endif
 #endif /* GL_KHR_debug */

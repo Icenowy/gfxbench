@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * This file is part of GFXBench. See the top-level LICENSE file for details.
  */
+#include <cstddef>
 #include "gl_wrapper_private.h"
 #ifdef HAVE_GLEW
 GLWrapperImpl * wrapper = GLWrapperImpl::Get();

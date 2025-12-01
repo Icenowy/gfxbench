@@ -15,7 +15,7 @@
 
 #ifndef __APPLE__
 #include "clinfocollector.h"
-#include "cudainfocollector.h"
+//#include "cudainfocollector.h"
 #endif
 
 #include "keyvaluevisitor.h"
@@ -159,9 +159,9 @@ public:
     }
     
 #ifndef __APPLE__
-    void operator()(const std::string&, sysinf::CudaInfo cudaInfo) {
+/*    void operator()(const std::string&, sysinf::CudaInfo cudaInfo) {
         operator()("Cuda device", cudaInfo.devices);
-    }
+    }*/
 
     void operator()(const std::string&, sysinf::ClInfo clInfo) {
         for (size_t i = 0; i < clInfo.platforms.size(); ++i) {
@@ -231,7 +231,7 @@ void SystemInfoGateway::collectSystemInfo()
     sysinf::collectMetalInfo(d->systemInfo);
 #ifndef __APPLE__
     sysinf::collectClInfo(d->systemInfo);
-    sysinf::collectCudaInfo(d->systemInfo);
+//    sysinf::collectCudaInfo(d->systemInfo);
     sysinf::collectVulkanInfo(d->systemInfo);
 #endif
 
@@ -596,7 +596,7 @@ std::vector<Configuration> SystemInfoGateway::getConfigurations() const
     std::vector<Configuration> configurations;
 #ifndef __APPLE__
     std::vector<Configuration> configurationsCL = clConfigurations();
-    std::vector<Configuration> configurationsCU = cuConfigurations();
+//    std::vector<Configuration> configurationsCU = cuConfigurations();
 #else
     std::vector<Configuration> configurationsCL;
     std::vector<Configuration> configurationsCU;
@@ -604,7 +604,7 @@ std::vector<Configuration> SystemInfoGateway::getConfigurations() const
     std::vector<Configuration> configurationsGPU = graphicsConfiguration();
 
     configurations.insert(configurations.end(), configurationsCL.begin(), configurationsCL.end());
-    configurations.insert(configurations.end(), configurationsCU.begin(), configurationsCU.end());
+//    configurations.insert(configurations.end(), configurationsCU.begin(), configurationsCU.end());
     configurations.insert(configurations.end(), configurationsGPU.begin(), configurationsGPU.end());
 
     return configurations;
@@ -1110,7 +1110,7 @@ std::vector<Configuration> SystemInfoGateway::clConfigurations() const
     return configurations;
 }
 
-std::vector<Configuration> SystemInfoGateway::cuConfigurations() const
+/*std::vector<Configuration> SystemInfoGateway::cuConfigurations() const
 {
     std::vector<Configuration> configurations;
 
@@ -1175,6 +1175,7 @@ std::vector<Configuration> SystemInfoGateway::cuConfigurations() const
 
     return configurations;
 }
+*/
 #endif // __APPLE__
 
 std::vector<Configuration> SystemInfoGateway::mtlConfigurations() const

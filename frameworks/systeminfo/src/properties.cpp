@@ -348,7 +348,7 @@ void sysinf::Properties::collect(DeviceInfoCollector& deviceInfoCollector, sysin
     deviceInfoCollector.collectAll(systeminfo);
 #ifndef __APPLE__
     sysinf::collectClInfo(systeminfo);
-    sysinf::collectCudaInfo(systeminfo);
+//    sysinf::collectCudaInfo(systeminfo);
 #endif
     sysinf::collectVulkanInfo(systeminfo);
     sysinf::collectMetalInfo(systeminfo);

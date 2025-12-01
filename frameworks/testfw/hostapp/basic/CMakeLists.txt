@@ -47,7 +47,7 @@ endif()
 
 find_package(Poco REQUIRED Util XML JSON Foundation)
 find_package(ngrtl REQUIRED core)
-apply_find_vars(NGRTL POCO)
+apply_find_vars(NGRTL)
 
 if (NOT TARGET tfw_schemas)
     add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../../schemas schemas)
@@ -286,6 +286,8 @@ if(MSVC)
     target_link_libraries(${EXECUTABLE_NAME} "delayimp")
     target_link_libraries(${EXECUTABLE_NAME} "advapi32.lib;gdi32.lib;shell32.lib")
 endif()
+
+target_link_libraries(${EXECUTABLE_NAME} Poco::Foundation Poco::Util)
 
 install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
 if(APPLE AND NOT IOS)

@@ -306,7 +306,7 @@ case $PLATFORM in
     ios|macosx)
     ;;
     *)
-    PROJECTS+=" frameworks/clew frameworks/cudaw"
+    PROJECTS+=" frameworks/clew"
     ;;
 esac
 #systeminfo have to followed by clew and cudaw
@@ -460,6 +460,10 @@ case $PLATFORM in
         case $PLATFORM in
             linux_arm64)
                COMMON_OPTS+=" -DOGLX_VARIANT=dummy"
+        esac
+        case $PLATFORM in
+            linux*)
+               COMMON_OPTS+=" -DCMAKE_DISABLE_FIND_PACKAGE_cudaw=YES":
         esac
         case $PLATFORM in
                 macosx)

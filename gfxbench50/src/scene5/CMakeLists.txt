@@ -145,7 +145,6 @@ endif()
 source_group( "" FILES ${SOURCES} )
 
 find_package(Poco REQUIRED Foundation)
-apply_find_vars(POCO)
 
 if(MSVC)
     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /DELAYLOAD:vulkan-1.dll")

@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 
 project(testfw)
 
+set(CMAKE_CXX_STANDARD 17)
+
 include(testfw.cmake)
 
 # Optional: if set add each directory to the generated project.
