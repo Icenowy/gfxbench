@@ -701,6 +701,7 @@ std::vector<Configuration> SystemInfoGateway::graphicsConfiguration() const
 	}
 #endif
 
+#if 0
     if (d->systemInfo.hasVulkan ) {
         tfw::ApiDefinition vulkan;
         vulkan.setType(tfw::ApiDefinition::VULKAN);
@@ -728,6 +729,7 @@ std::vector<Configuration> SystemInfoGateway::graphicsConfiguration() const
 			configs.push_back(configuration);
 		}
     }
+#endif
 
     if (d->systemInfo.hasMetal) {
         tfw::ApiDefinition metalVersion;
