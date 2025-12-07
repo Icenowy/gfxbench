@@ -107,7 +107,7 @@ void MainWindow::onStartTest()
 	env.setHeight(ui_->contentWidget->height());
 	std::string prefix = testPrefix(d);
 	env.setReadPath(basePath_ + "/data/" + prefix + "/");
-	env.setWritePath(basePath_ + "/data/" + prefix + "/");
+	env.setWritePath(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
 	std::string config = d.toJsonString();
 	NGLOG_DEBUG(config);
 	

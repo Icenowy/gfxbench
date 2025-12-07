@@ -359,7 +359,7 @@ public:
         //bool ignoreError = config().hasOption("force");
         std::string testFilterRegex = ".+";
 
-        resultPath_ = basePath_;
+        resultPath_ = ".";
         if (config().hasOption("resultdir"))
         {
             Poco::Path rdir = config().getString("resultdir");

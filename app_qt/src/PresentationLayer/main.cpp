@@ -254,7 +254,8 @@ void setConfigs(int argc, char *argv[], BenchmarkService& service)
     service.setConfig(BenchmarkService::APPDATA_PATH, basePath.toUtf8());
     
     service.setConfig(BenchmarkService::SYNCHRONIZATION_PATH,
-            (basePath  + "/synchronized").toUtf8());
+        (QDir::fromNativeSeparators(QStandardPaths::writableLocation(
+            QStandardPaths::CacheLocation) + "/synchronized").toUtf8()));
     
     service.setConfig(BenchmarkService::DATA_PATH, (basePath + "/data").toUtf8());
     
@@ -306,8 +307,7 @@ int main(int argc, char *argv[])
         std::shared_ptr<BenchmarkService> benchmarkService =
                 BenchmarkService::create(&mainWindow, &runtimeInfo);
         setConfigs(argc, argv, *benchmarkService);
-        logger->openFileSink(QString::fromStdString(benchmarkService->getConfig(
-                BenchmarkService::APPDATA_PATH) + "/" + ::productId + ".log"));
+        logger->openFileSink(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + ::productId + ".log");
         NGLOG_INFO("Application started");
 
 		unsigned int renderApiFlags = tfw::ApiDefinition::NOT_DEFINED;
