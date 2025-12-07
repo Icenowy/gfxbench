@@ -306,8 +306,7 @@ int main(int argc, char *argv[])
         std::shared_ptr<BenchmarkService> benchmarkService =
                 BenchmarkService::create(&mainWindow, &runtimeInfo);
         setConfigs(argc, argv, *benchmarkService);
-        logger->openFileSink(QString::fromStdString(benchmarkService->getConfig(
-                BenchmarkService::APPDATA_PATH) + "/" + ::productId + ".log"));
+        logger->openFileSink(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + ::productId + ".log");
         NGLOG_INFO("Application started");
 
 		unsigned int renderApiFlags = tfw::ApiDefinition::NOT_DEFINED;

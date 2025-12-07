@@ -25,6 +25,7 @@
 #include <Poco/Timer.h>
 #include <Poco/Timestamp.h>
 #include <Poco/DateTimeFormatter.h>
+#include <Poco/Path.h>
 
 #ifdef __APPLE__
 #include <TargetConditionals.h>
@@ -364,7 +365,7 @@ void BackgroundTasks::initialize(unsigned int renderApiFlags, unsigned int compu
 		NGLOG_TRACE(properties.toJsonString(false));
 
 		NGLOG_DEBUG("Opening result database");
-		d->dataGateway->openLocalDatabase(d->applicationConfig->appDataPath);
+		d->dataGateway->openLocalDatabase(Poco::Path::dataHome() + "Kishonti Ltd/GFXBench");
 	}
 	else
 	{
@@ -704,7 +705,7 @@ void BackgroundTasks::prepareNextTest()
 
     tfw::Descriptor descriptor = d->dataGateway->getDescriptorByTestId(testItem.testId());
     descriptor.env().setReadPath(d->applicationConfig->dataPath + "/" + descriptor.dataPrefix() + "/");
-    descriptor.env().setWritePath(d->applicationConfig->appDataPath + "/");
+    descriptor.env().setWritePath(Poco::Path::dataHome() + "Kishonti Ltd/GFXBench/");
     descriptor.env().compute().setConfigIndex(d->testRepository->selectedConfigurationIndex());
 
 	auto apis = d->testRepository->selectedConfiguration().ApiDefinitions();

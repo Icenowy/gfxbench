@@ -11,6 +11,7 @@
 #include <Poco/DateTimeFormatter.h>
 #include <Poco/File.h>
 #include <Poco/FileStream.h>
+#include <Poco/Path.h>
 
 #include <sstream>
 
@@ -42,7 +43,7 @@ void CorporateDataGateway::addResults(
 
 void CorporateDataGateway::addSession(const Session &session)
 {
-    mLastSessionPath = mApplicationConfig->appDataPath + "/results/" +
+    mLastSessionPath = Poco::Path::dataHome() + "Kishonti Ltd/GFXBench" + "/results/" +
             Poco::DateTimeFormatter::format(Poco::DateTime(), "%Y_%m_%d_%h_%M_%S");
     DataGateway::addSession(session);
 }
