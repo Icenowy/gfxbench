@@ -225,7 +225,7 @@ if [ "$MP_COMPILE" = "true" ] ; then
     case $NG_CMAKE_GENERATOR in
     *Makefiles)
         echo "Enable parallel build for: $NG_CMAKE_GENERATOR"
-        export MAKEFLAGS+=" -j16"
+	export MAKEFLAGS+=" -j$(nproc)"
     ;;
     Visual\ Studio*)
         echo "Enable parallel build for: $NG_CMAKE_GENERATOR"

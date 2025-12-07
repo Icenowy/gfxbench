@@ -113,7 +113,7 @@ void BenchmarkPage::showEvent(QShowEvent* event)
 #ifdef Q_OS_MAC
     //TODO test on mac if works enable it
    // macUtil.disableScreensaver();
-#else
+#elif Q_OS_WIN
     SystemParametersInfo(SPI_SETSCREENSAVEACTIVE, FALSE, NULL, SPIF_SENDWININICHANGE);
     if (SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_DISPLAY_REQUIRED) == NULL)
     {
@@ -131,7 +131,7 @@ void BenchmarkPage::hideEvent(QHideEvent* event)
 #ifdef Q_OS_MAC
     //TODO test on mac if works enable it
  //   macUtil.releaseScreensaverLock();
-#else
+#elif Q_OS_WIN
     SystemParametersInfo(SPI_SETSCREENSAVEACTIVE, TRUE, NULL, SPIF_SENDWININICHANGE);
     // set state back to normal
     SetThreadExecutionState(ES_CONTINUOUS);
